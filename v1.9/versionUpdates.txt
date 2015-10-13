@@ -1,0 +1,266 @@
+			    ============
+			    |UPDATE LOG|
+			    ============
+-----------------------------------------------------------------------
+V.1.5	27/08/2015
+-----
+	[-] Simple Functions:
+		[> choose username.
+		[> choose password.		**COMPLETE**
+
+		[> enter username.
+		[> enter password.			**COMPLETE**
+
+		[> app checks username entered if it
+		   matches the one in the system.	**COMPLETE**
+		
+		[> app checks password entered if it
+		   matches the one in the system.	**COMPLETE**
+
+======================================================================
+UserInfo header file
+======================================================================
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class UserInfo
+{
+  public:
+    UserInfo();    // default constructor
+    ~UserInfo();   // de-constructor
+    
+    void usernameInput();
+    void passwordInput();
+    void usernameLogger();	
+    void passwordLogger();
+    
+  private:    // class variables
+    std::string username;
+    std::string password;
+    std::ofstream usernameLog;
+    std::ofstream passwordLog;
+};
+
+======================================================================
+UserLogin header file
+======================================================================
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class UserLogin
+{
+  public:
+    UserLogin();  // default  Constructor
+    ~UserLogin(); // de-constructor
+    
+    void usernamePrompt();
+    void passwordPrompt();
+    void openUsernameLog();
+    void openPasswordLog();
+    void usernameValidation();
+    void passwordValidation();
+    void login();
+  
+  private:  // class  variable
+    std::string username;
+    std::string password;
+    std::string usernameCheck;
+    std::string passwordCheck;
+};
+
+======================================================================
+Main cpp file
+======================================================================
+#include "UserInfo.h"
+#include "UserLogin.h"
+
+int main()
+{
+  // creates instances of
+  UserInfo info;
+  UserLogin login;
+  
+  // function calls for user to create account
+  info.usernameInput();
+  info.passwordInput();
+  info.usernameLogger();
+  info.passwordLogger();
+  
+  // function calls for user to log into account
+  login.usernamePrompt();
+  login.passwordPrompt();
+  login.openUsernameLog();
+  login.openPasswordLog();
+  login.usernameValidation();
+  login.passwordValidation();
+  login.login();
+  
+  std::cin.get();
+  std::cin.get();
+  return 0;
+}
+
+======================================================================
+-----------------------------------------------------------------------
+V.1.8	29/08/2015
+-----	
+
+	[-] Validation Functions:
+		[> Check username string
+			must be: 
+				(> over 4 characters long).	**COMPLETE**
+		[> Check password string
+			must be: 
+				(> 8 or more characters,
+			 	(> 2 or more numbers).		**COMPLETE**
+		
+		/-----------------------------------------\
+		|these validations would occur only during| 
+		|the account set up page.		  |
+		|-----------------------------------------|
+
+		[> If user miss-types their username or password 	
+		   during the login process then allow them to 
+		   try again.					**COMPLETE**
+
+======================================================================
+UserInfo header file
+======================================================================
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class UserInfo
+{
+  public:
+    UserInfo();    // default constructor
+    ~UserInfo();   // de-constructor
+    
+    int usernameLength(std::string userStr);
+    int passwordLengthCheck(std::string passStr);
+    int passwordDigitCheck(std::string digStr);
+    void usernameInput();
+    void passwordInput();
+    void usernameLogger();
+    void passwordLogger();
+    
+  private:    // class variables
+    std::string username;
+    std::string password;
+    std::ofstream usernameLog;
+    std::ofstream passwordLog;
+    int userStrLength;
+    int userStrMinLength;
+    int passwordLength;
+    int passwordMinLength;
+    int passwordDigLength;
+    int passwordDigMinLength;
+};
+
+======================================================================+
+UserLogin header file
+======================================================================
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class UserLogin
+{
+  public:
+    UserLogin();  // default  Constructor
+    ~UserLogin(); // de-constructor
+    
+    void usernamePrompt();
+    void passwordPrompt();
+    void openUsernameLog();
+    void openPasswordLog();
+    void loginResponse();
+    void login();
+    bool usernameValidation();
+    bool passwordValidation();
+   
+  
+  private:  // class  variable
+    std::string username;
+    std::string password;
+    std::string usernameCheck;
+    std::string passwordCheck;
+};
+
+======================================================================
+Main cpp file
+======================================================================
+#include "UserInfo.h"
+#include "UserLogin.h"
+
+int main()
+{
+  // creates instances of
+  UserInfo info;
+  UserLogin login;
+  
+  // function calls for user to create account
+  info.usernameInput();
+  info.passwordInput();
+  info.usernameLogger();
+  info.passwordLogger();
+  
+  
+  // function calls for user to log into account
+  login.login();
+
+  std::cin.get();
+  std::cin.get();
+  return 0;
+}
+
+======================================================================
+-----------------------------------------------------------------------
+V.1.9		(IN-PROGRESS)
+-----
+	[-] Optimize/structure:
+		[> completely restart everything. Use proper
+		   syntax for class variable instatiations.
+		
+		[> re-structure the way that classes talk 
+		   to eachother.
+
+		[> make inforamtion easily avaible amongst 
+		   classes.
+
+		[> organize all the cpp files, header files 
+		   and log files into seperate folders.
+		
+	[-] simple UI characteristics
+		[> Main menu choice. welcome the user, gives
+		   them the option to:
+
+			(> create an account
+				(follows proper validation criteria  ** COMPLETE **
+				 defined in v1.8 in regards to
+				 username and password).
+
+			(> check username for spaces
+
+			(> log into an account
+				(if no log files can be found of an
+				 account:  
+
+					^) notify the user they must
+					   create an accout.
+
+				 	^) asks if they want to 
+					   create an account
+
+					^) or go to the 
+					   main menu/welcome page).
+		
+-----------------------------------------------------------------------
+V.2.0
+-----
+	
+	- Optimize
+
+	- Encypt username and password data files.
